@@ -48,7 +48,9 @@ import org.springframework.context.annotation.Configuration;
 )
 public class ConfiguracaoSwagger { }
 ```
-Depois foi preciso adicionar as anotações para customizar a documentação conforme desejado. Isso é feito nas classes marcadas com @RestController. Essa parte deixo para que cada um veja como fazer. Só faço aqui uma ressalva, se quiser que possa ser possível testar rotas privadas na própria documentação acrescentar dentro da anotação @Operation o atributo:
+Depois foi preciso adicionar as anotações para customizar a documentação conforme desejado. Isso é feito nas classes marcadas com @RestController. Essa parte deixo para que cada um veja como fazer. A documentação pode ser acessada na URL http://localhost:8080/swagger-ui/index.html quando a aplicação estiver rodando em sua máquina.
+
+Só faço aqui uma ressalva, se quiser que possa ser possível testar rotas privadas na própria documentação acrescentar dentro da anotação @Operation o atributo:
 
 ```
 security = @SecurityRequirement(name = "bearerAuth"
