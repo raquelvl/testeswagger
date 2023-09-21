@@ -13,6 +13,7 @@ public class HandlerDeExcecoes {
     private static String FALHA_DE_LOGIN_URI = "https://servidor:8080/auth/login";
     private static String GERENCIA_DE_USUARIOS_URI = "https://servidor:8080/auth/usuarios";
 
+
     @ExceptionHandler(ProdutoInvalidoException.class)
     public ResponseEntity<DetalhesDoProblema> lidaComProdutoInvalidoException(ProdutoInvalidoException pie) {
         // System.out.println(pie.getMessage());
@@ -24,6 +25,15 @@ public class HandlerDeExcecoes {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problema);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<DetalhesDoProblema> lidaComDadosDeentradaInvallidos(IllegalArgumentException iae) {
+        DetalhesDoProblema problema = new DetalhesDoProblema();
+        problema.setStatus(HttpStatus.BAD_REQUEST.value());
+        problema.setTitle("Dados fornecidos para cadastro são inválidos.");
+        problema.setType(ADICIONA_PRODUTO_URI);
+        problema.setDetail("Tentou cadastrar um usuário ou um produto mas os dados fornecidos não são válidos.");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problema);
+    }
     @ExceptionHandler(ProdutoJaExisteException.class)
     public ResponseEntity<DetalhesDoProblema> lidaComProdutoJaExisteException(ProdutoJaExisteException pjee) {
         // System.out.println(pjee.getMessage());
@@ -72,11 +82,11 @@ public class HandlerDeExcecoes {
     public ResponseEntity<DetalhesDoProblema> lidaComLoginInvalidoException(LoginInvalidoException lie) {
         // System.out.println(pie.getMessage());
         DetalhesDoProblema problema = new DetalhesDoProblema();
-        problema.setStatus(HttpStatus.OK.value());
+        problema.setStatus(HttpStatus.UNAUTHORIZED.value());
         problema.setTitle(lie.getTitulo());
         problema.setType(FALHA_DE_LOGIN_URI);
         problema.setDetail(lie.getDetalhes());
-        return ResponseEntity.status(HttpStatus.OK).body(problema);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(problema);
     }
 
     @ExceptionHandler(OperacaoNaoAutorizadaException.class)

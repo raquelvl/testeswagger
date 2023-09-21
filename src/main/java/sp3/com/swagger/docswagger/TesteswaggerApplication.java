@@ -12,7 +12,7 @@ public class TesteswaggerApplication {
     public FilterRegistrationBean<FiltroDeTokensJWT> filterJwt() {
         FilterRegistrationBean<FiltroDeTokensJWT> filterRB = new FilterRegistrationBean<FiltroDeTokensJWT>();
         filterRB.setFilter(new FiltroDeTokensJWT());
-        filterRB.addUrlPatterns("/v1/api/produtos/*", "/auth/usuarios");
+        filterRB.addUrlPatterns("/v1/auth/*");
         return filterRB;
     }
     public static void main(String[] args) {
