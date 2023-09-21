@@ -11,7 +11,7 @@ Notei duas grandes questões nessa migração:
 spring.main.allow-circular-references=true
 ```
 
-A parte do filtro e daconfiguração do giltro funcionaram sem modificações.
+A parte do filtro e da configuração do filtro funcionaram sem modificações (o que eu já tinha feito anteriormente para usar a versão 0.11.5 do jwt).
 
 ## Mudanças por conta do swagger
 
